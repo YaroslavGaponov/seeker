@@ -1,0 +1,14 @@
+{
+  "name": "seeker",
+  "version": "0.0.1",
+  "description": "Seeker - search engine",
+  "author": {
+    "name": "Yaroslav Gaponov"
+  },
+  "readme": "Info\n=======\n\nSearch engine\n\nExample\n=======\n\n```javascript\n\n\nvar seeker = require('seeker');\n\n// create schema\nvar schema = seeker.Schema();\nschema.addField(\"author\", seeker.StandardAnalizer());\nschema.addField(\"quite\", seeker.StandardAnalizer());\nschema.addField(\"color\", seeker.KeywordAnalizer());\n\n// create indices\nvar indexer = seeker.Indexer();\nindexer.createIndex(\"test1\", schema);\nindexer.createIndex(\"test2\", schema);\n\n// add documents\nindexer.addDocument(\"test1\", {\"author\": \"Aesop\", \"quite\": \"Any excuse will serve a tyrant.\", \"color\": \"red\"});\nindexer.addDocument(\"test1\", {\"author\": \"Aesop\", \"quite\": \"Appearances often are deceiving.\", \"color\": \"blue\"});\nindexer.addDocument(\"test1\", {\"author\": \"Aesop\", \"quite\": \"Put your shoulder to the wheel.\", \"color\": \"green\"});\nindexer.addDocument(\"test2\", {\"author\": \"Woody Allen\", \"quite\": \"Eighty percent of success is showing up.\", \"color\": \"yellow\"});\nindexer.addDocument(\"test2\", {\"author\": \"Woody Allen\", \"quite\": \"On the plus side, death is one of the few things that can be done just as easily lying down.\", \"color\": \"black\"});\n\n\n// search\nvar _query = function(indices, q) {\n    console.log(\"---------------------\");\n    console.log(\"query:\", q);\n    console.log(\"indices:\", indices ? indices.toString() : \"all\");\n    console.log(\"result:\", JSON.stringify(indexer.search(indices, seeker.Query(q))));\n    console.log(\"---------------------\");\n};\n\n_query(null, \"(Aesop&(wheel | tyrant))\");\n_query(\"test1\", \"(woody & plus)\");\n_query(\"test2\", \"(red | yellow)\");\n_query([\"test1\", \"test2\"], \"(red - serve)\");\n_query(null, \"(red - often)\");\n\n\n\n```",
+  "_id": "seeker@0.0.1",
+  "dist": {
+    "shasum": "ec256cc44215a11d23329bad1b7e695c7a7d694e"
+  },
+  "_from": "seeker"
+}
