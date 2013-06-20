@@ -29,11 +29,11 @@ var _query = function(indices, q) {
     console.log("---------------------");
 };
 
-_query(null, "(Aesop&(wheel | tyrant))");
-_query("test1", "(woody & plus)");
-_query("test2", "(red | yellow)");
-_query(["test1", "test2"], "(red - serve)");
-_query(null, "(red - often)");
+_query(null, "Aesop&(wheel | tyrant)");
+_query("test2", "woody & plus");
+_query("test2", "red | yellow");
+_query(["test1", "test2"], "red - serve");
+_query(null, "red - often");
 
 
 

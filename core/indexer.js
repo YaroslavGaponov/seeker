@@ -61,7 +61,7 @@ Indexer.prototype.search = function(indices, query) {
     
     var hits = [];
     for(var i=0; i<indices.length; i++) {
-        var set = query.exec
+        var set = query.run
             (
                 function(term) {
                     return self.indices[indices[i]].getDocsSet(term);
