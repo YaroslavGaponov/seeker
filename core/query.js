@@ -120,7 +120,6 @@ var Query = module.exports = function(searchQuery) {
 }
 
 
-
 Query.prototype.run = function(getDocsSet) {
     return _calculate(getDocsSet)(this.tree);    
 }

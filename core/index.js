@@ -24,7 +24,7 @@ Index.prototype.addDocument = function(document) {
     for(var field in document) {
         var analizer = this.schema.getAnalizer(field);
         if (analizer) {
-            var terms = analizer.parse(document[field]);
+            var terms = analizer.getTerms(document[field]);
             terms.forEach(function(term) {
                 if (!self.reversedIndex[field]) self.reversedIndex[field] = {};    
                 if (!self.reversedIndex[field][term]) self.reversedIndex[field][term] = new BitSet();    
@@ -74,7 +74,7 @@ Index.prototype.getDocsSet = function(token) {
     for(var i=0; i<fields.length; i++) {
         var analizer = this.schema.getAnalizer(fields[i]);
         if (analizer) {
-            var terms = analizer.parse(token);        
+            var terms = analizer.getTerms(token);        
             var _acc;
             for(var j=0; j<terms.length; j++) {
                 if (this.reversedIndex[fields[i]][terms[j]]) {

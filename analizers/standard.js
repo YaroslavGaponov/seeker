@@ -1,26 +1,18 @@
 
+
 var util = require("util");
-var Analizer = require("./libs/analizer");
-var filters = require("./libs/filters");
-var tokenizers = require("./libs/tokenizers");
+var Analizer = require("./analizer");
+
+var WhitespaceTokenizer = require("./tokenizers/whitespace");
+var LowerCaseFilter = require("./filters/lowercase");
+
 
 var StandardAnalizer = module.exports = function() {
-    
     if (this instanceof StandardAnalizer) {
-    
-        Analizer.call(this, tokenizers.standard);
-        
-        this.addFilter(filters.standard(3, 255));
-        this.addFilter(filters.lowercase);
-        this.addFilter(filters.stopWords);
+        Analizer.call(this, WhitespaceTokenizer, [LowerCaseFilter]);
     } else {
         return new StandardAnalizer();
     }
 }
 
 util.inherits(StandardAnalizer, Analizer);
-
-
-
-
-
