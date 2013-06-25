@@ -1,6 +1,8 @@
 
-module.exports.standard = function(token) {
-    return token.length >= 3 ? token : null;
+module.exports.standard = function(min, max) {
+    return function(token) {
+        return token.length >= min  && token.length <= max ? token : null;
+    }
 }
 
 module.exports.lowercase = function(token) {

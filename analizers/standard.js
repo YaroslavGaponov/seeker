@@ -10,7 +10,7 @@ var StandardAnalizer = module.exports = function() {
     
         Analizer.call(this, tokenizers.standard);
         
-        this.addFilter(filters.standard);
+        this.addFilter(filters.standard(3, 255));
         this.addFilter(filters.lowercase);
         this.addFilter(filters.stopWords);
     } else {
